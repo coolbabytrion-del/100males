@@ -367,7 +367,7 @@ footer{background:#000;border-top:2px solid var(--emb);padding:20px;
 
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;min-height:260px}.hero-main{min-height:260px}.hero-q{display:none}
-  #pgPlayer.on{grid-template-columns:1fr}.pl-sidebar{display:none}
+  #pgPlayer.on{display:block;grid-template-columns:unset}.pl-sidebar{display:none}.pl-main{max-height:none;overflow:visible;border-right:none}
 }
 @media(max-width:600px){
   .hdr-srch{display:none}.sec{padding:14px 12px}
@@ -727,7 +727,7 @@ function renderQueue(){
     ?list.map((v,i)=>`
       <div class="qi${i===0?' on':''}" onclick="playVid('${esc(v.id)}')">
         <div class="qi-th">
-          ${v.url?`<video src="${esc(v.url)}" muted preload="metadata"></video>`:''}
+          ${v.url?`<video src="${esc(v.url)}" muted preload="metadata" onloadedmetadata="this.currentTime=2"></video>`:''}
           <div class="qi-em">${catEm(v.cat)}</div>
         </div>
         <div style="min-width:0;flex:1">
@@ -754,7 +754,7 @@ function cardHTML(v){
   const pct=rpct(v),mv=voted[v.id];
   return`<div class="vcard" onclick="playVid('${esc(v.id)}')">
     <div class="vthumb">
-      ${v.url?`<video src="${esc(v.url)}" muted preload="metadata"></video>`:''}
+      ${v.url?`<video src="${esc(v.url)}" muted preload="metadata" onloadedmetadata="this.currentTime=2"></video>`:''}
       <div class="vthumb-bg">${catEm(v.cat)}</div>
       <div class="vcat-tag">${esc(v.cat)}</div>
       <div class="vdur">${esc(v.dur||'—')}</div>
@@ -967,7 +967,7 @@ function renderSidebar(curId){
     ?list.map(v=>`
       <div class="sb-card" onclick="playVid('${esc(v.id)}')">
         <div class="sb-th">
-          ${v.url?`<video src="${esc(v.url)}" muted preload="metadata"></video>`:''}
+          ${v.url?`<video src="${esc(v.url)}" muted preload="metadata" onloadedmetadata="this.currentTime=2"></video>`:''}
           <div class="sb-th-em">${catEm(v.cat)}</div>
         </div>
         <div class="sb-inf">
